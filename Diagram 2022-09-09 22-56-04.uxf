@@ -12,8 +12,18 @@ _-ClassAttribute: Long_
 - getTarifaTrafico(float traficoCiudad): float
 - getTarifaDemandaPasajeros(float demandaPasajeros): float
 + getPrecioTotalViaje(): float
++ getTipoDePago(): String
 
 
 #Operation(i: int): int
 /+AbstractOperation()/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>160</y><w>210</w><h>190</h></coordinates><panel_attributes>SistemaPago
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+-pagoEfectivo(float costoViaje): void
+-pagoTarjeta(float costoViaje): void
++pago(Viaje instanciaViaje): void
+
 </panel_attributes><additional_attributes></additional_attributes></element></diagram>
