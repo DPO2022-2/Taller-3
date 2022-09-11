@@ -1,29 +1,144 @@
-<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>380</x><y>80</y><w>360</w><h>280</h></coordinates><panel_attributes>Viaje
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><help_text>Space for diagram notes()</help_text><element><id>UMLClass</id><coordinates><x>252</x><y>288</y><w>549</w><h>216</h></coordinates><panel_attributes>Viaje
 --
--id: Long
-_-ClassAttribute: Long_
-
-
-
+- id: String
+- automovilViaje: Automobil
 --
++ Viaje(boolean tipoPago, float latitudIncial, float longitudInicial, float latitudFinal, float longitudFinal): void
 - getTarifaViajeDistanciaEfectiva(float distanciaEfectiva): float
 - getTarifaKilometroDeCiudad(Ciudad ciudadViaje): float
 - getTarifaTipoAutomovil(Automovil automovilViaje): float
 - getTarifaTrafico(float traficoCiudad): float
 - getTarifaDemandaPasajeros(float demandaPasajeros): float
 + getPrecioTotalViaje(): float
++ agregarPasajeroViaje(Pasajero): void
++ agregarParadaIntermediaViaje(float longitud, float latitud)
 + getTipoDePago(): String
-
-
-#Operation(i: int): int
-/+AbstractOperation()/
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>160</y><w>210</w><h>190</h></coordinates><panel_attributes>SistemaPago
++ realizarPagoViaje(): void
++ calificarViaje(Usuario user): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>369</y><w>198</w><h>126</h></coordinates><panel_attributes>SistemaPago
 --
--id: Long
-_-ClassAttribute: Long_
+- id: float
+- statusPago: bool
 --
--pagoEfectivo(float costoViaje): void
--pagoTarjeta(float costoViaje): void
-+pago(Viaje instanciaViaje): void
+- pagoEfectivo(float costoViaje): void
+- pagoTarjeta(float costoViaje): void
+- pagoDividido(float costoViaje): void
++ pago(Viaje instanciaViaje): void
++ getStatusPago(): bool
 
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>252</x><y>531</y><w>549</w><h>99</h></coordinates><panel_attributes>Ciudad
+--
+- costoKilometro: float
+- traficoCiudad: float
+--
++ getDistanciaEfectiva(float latitudIncial, float longitudInicial, float latitudFinal, float longitudFinal): float
++ getTrafico(): int [0..5] 
++ getCostoKilometro: float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>657</y><w>423</w><h>126</h></coordinates><panel_attributes>Automovil
+--
+- id: String
+- placa: String
+- categoria: String
+--
++ Automovil(Conductor duenio, String modeloAutomovil, String placaAutomovil)
++ getDuenioAutomovil(): Conductor
++ getPlacaAutomovil(): String
++ getCategoriaAutomovil(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>432</y><w>432</w><h>198</h></coordinates><panel_attributes>Conductor
+--
+- id: String
+- nombre: String
+- apellido: String
+- identificacion: String
+- edad: int
+- calificacion: ArrayList&lt;int&gt;
+- puntajeConductor: int
+- dineroDisponible: float
+--
++ Conductor(String id, String nombre, String apellido, String 
+identificacion, int edad)
++ getPuntajeConductor(): int
++ getDineroDisponible(): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>261</y><w>432</w><h>153</h></coordinates><panel_attributes>Pasajero
+--
+- id: String
+- nombre: String
+- apellido: String
+- identificacion: String
+- edad: int
+- calificacion: ArrayList&lt;int&gt;
+- tarjetaCredito: boolean
+--
++ Pasajero(String id, String nombre, String apellido, String identificacion, int edad)
++ getTieneTarjetaCredito: boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>18</y><w>252</w><h>72</h></coordinates><panel_attributes>Aplicacion
+--
+--
++ main(String[] args): void
++ mostrarMenu(): void
++ ejecutarOpcion(int opcionSeleccionada): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>252</x><y>135</y><w>549</w><h>108</h></coordinates><panel_attributes>ControladorGeneral
+--
+- conductor: boolean
+
+--
++ iniciarViaje(Pasajero pasajero, float latitudIncial, float longitudInicial, float latitudFinal, float longitudFinal)
++ crearCuentaPasajero(String nombre, String apellido, String identificacion, int edad)
++ getViajes(): ArrayList&lt;Viaje&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>234</y><w>63</w><h>72</h></coordinates><panel_attributes>lt=&lt;-
+m1=viajes *</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>882</x><y>360</y><w>153</w><h>126</h></coordinates><panel_attributes>&lt;&lt;herencia&gt;&gt;
+Usuario
+--
++ getNombre(): String
++ getApellido(): String
++ getIdentificacion(): String
++ getEdad(): int
++ getCalificacion(): int
++ setCalificacion(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>531</x><y>81</y><w>90</w><h>72</h></coordinates><panel_attributes>lt=&lt;-
+Controlador</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>954</x><y>0</y><w>198</w><h>72</h></coordinates><panel_attributes>SistemaPuntos
+--
+- kilometraje: int
+--
+- distanciaRecorrida(): int
+- agregarPuntajeConductor(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1269</x><y>621</y><w>99</w><h>54</h></coordinates><panel_attributes>lt=&lt;-
+m1=automoviles *</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>405</y><w>108</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=pasajeros *</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>441</y><w>108</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=conductor</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>495</y><w>63</w><h>54</h></coordinates><panel_attributes>lt=&lt;-
+m1=ciudad</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>423</y><w>81</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=pago</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>882</x><y>171</y><w>36</w><h>36</h></coordinates><panel_attributes>type=decision</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>171</y><w>108</w><h>36</h></coordinates><panel_attributes>[driver == true]</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>144</y><w>216</w><h>99</h></coordinates><panel_attributes>ControladorConductor
+--
+- conduciendo: boolean
+- automovilEnUso: String
+--
++ buscarViaje(Conductor conductor): void
++ setAutomovilEnUso(Automobil): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>927</x><y>162</y><w>27</w><h>45</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>63</y><w>144</w><h>45</h></coordinates><panel_attributes>[conduciendo == false]</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>117</y><w>27</w><h>45</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>1035</x><y>90</y><w>36</w><h>36</h></coordinates><panel_attributes>type=decision</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>909</x><y>171</y><w>45</w><h>36</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;20;30;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1593</x><y>450</y><w>198</w><h>153</h></coordinates><panel_attributes>Cloud Server
+_umletcode=
+//cloud
+
+//DrawConfig Parameters (bg: bgColor?, fg: fgColor?, lt: lineType?, lw: lineWidth?, transparency: transparencyValue?)
+var cloudConfig = {fg: '#00BFFF', lt: '-', lw: 2}
+
+//Parameters (x, y, width, height, start, extent, open, drawConfig?)
+drawArc(60,70,50,50,30,130,true, cloudConfig)
+drawArc(36,83,49,50,70,100,true, cloudConfig)
+drawArc(73,83,50,30,-100,180,true, cloudConfig)
+drawArc(36,84,60,40,180,180,true, cloudConfig)
+var innerCloudConfig= {fg: '#87CEFA', lt: '-', lw: 2}
+drawArc(45,87,40,30,170,180,true, innerCloudConfig)
+drawArc(75,79,20,20,30,130,true, innerCloudConfig)
+
+//server
+//Parameters (x, y, width, height, radius, drawConfig?)
+drawRectangleRound(140,50,60,90,5, {bg: 'gray', fg: 'black', lt: '-', lw: 2})
+
+//Parameters (x, y, width, height, drawConfig?)
+drawRectangle(150,60,40,8)
+drawRectangle(150,80,40,8)
+drawRectangle(150,100,40,8)
+
+//Parameters (x, y, radius, drawConfig?)
+drawCircle(170,125,5)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1494</x><y>522</y><w>117</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+m1=conductores *</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1683</x><y>594</y><w>27</w><h>45</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;30;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1548</x><y>621</y><w>603</w><h>81</h></coordinates><panel_attributes>Admin
+--
+- cantidadConductores: int
+--
++ crearCuentaConductor(String nombre, String apellido, String identificacion, int edad, String modeloAutomovil): void
++ getCantidadConductores(): int
++ pagarSaldoFaltanteConductor(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>423</y><w>198</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>15;11;200;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>405</y><w>189</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>15;11;190;10</additional_attributes></element></diagram>
